@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppFundacion</string>
+    <!-- Texto view main-->
+    <string name="name_fundation">Fundation</string>
+    <string name="description">Description</string>
+    <string name="txt_btn_1">Agregar empleado</string>
+    <string name="txt_btn_2">Ver empleados</string>
+    <string name="name_organization">Tim Er</string>
+</resources>
