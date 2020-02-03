@@ -6,13 +6,13 @@ public class DataWork {
     private Cargo cargo;
     private Department department;
     private String tipo_de_pago;
-    private String salary;
+    private Double salary;
     private Date date_of_admission;
 
     public DataWork() {
     }
 
-    public DataWork(Cargo cargo, Department department, String tipo_de_pago, String salary, Date date_of_admission) {
+    public DataWork(Cargo cargo, Department department, String tipo_de_pago, Double salary, Date date_of_admission) {
         this.cargo = cargo;
         this.department = department;
         this.tipo_de_pago = tipo_de_pago;
@@ -44,11 +44,11 @@ public class DataWork {
         this.tipo_de_pago = tipo_de_pago;
     }
 
-    public String getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
@@ -58,5 +58,16 @@ public class DataWork {
 
     public void setDate_of_admission(Date date_of_admission) {
         this.date_of_admission = date_of_admission;
+    }
+
+    @Override
+    public String toString() {
+        return "DataWork{" +
+                "cargo=" + cargo +
+                ", department=" + department +
+                ", tipo_de_pago='" + tipo_de_pago + '\'' +
+                ", salary='" + salary + '\'' +
+                ", date_of_admission=" + date_of_admission +
+                '}';
     }
 }

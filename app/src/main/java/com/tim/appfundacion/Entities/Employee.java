@@ -3,14 +3,15 @@ package com.tim.appfundacion.Entities;
 import java.util.Date;
 
 public class Employee {
-    private int id;
+    private int id_employee;
     private String DNI;
     private String name;
     private String last_name;
     private String telf;
     private Date birthDate;
     private String gender;
-    private String nationality;
+    private Nacionality nacionality;
+
 
     // Trabajo
     private DataWork dataWork;
@@ -21,26 +22,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String DNI, String name, String last_name, String telf, Date birthDate, String gender, String nationality) {
-        this.id = id;
-        this.DNI = DNI;
-        this.name = name;
-        this.last_name = last_name;
-        this.telf = telf;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.nationality = nationality;
+    public int getId_employee() {
+        return id_employee;
     }
 
-    public int getId() {
-        return id;
+    public void setId_employee(int id_employee) {
+        this.id_employee = id_employee;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
 
     public String getDNI() {
         return DNI;
@@ -90,12 +78,12 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getNationality() {
-        return nationality;
+    public Nacionality getNacionality() {
+        return nacionality;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
+    public void setNacionality(Nacionality nacionality) {
+        this.nacionality = nacionality;
     }
 
     public DataWork getDataWork() {
@@ -120,5 +108,22 @@ public class Employee {
 
     public void setTitle_academic(String title_academic) {
         this.title_academic = title_academic;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id_employee=" + id_employee +
+                ", DNI='" + DNI + '\'' +
+                ", name='" + name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", telf='" + telf + '\'' +
+                ", birthDate=" + birthDate +
+                ", gender='" + gender + '\'' +
+                ", nacionality=" + nacionality +
+                ", dataWork=" + dataWork +
+                ", level_academic='" + level_academic + '\'' +
+                ", title_academic='" + title_academic + '\'' +
+                '}';
     }
 }
