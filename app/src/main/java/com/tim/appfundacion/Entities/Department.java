@@ -1,32 +1,32 @@
 package com.tim.appfundacion.Entities;
 
 public class Department {
-    private int id;
-    private String name;
+    private int id_department;
+    private String name_department;
 
     public Department(int id, String name) {
-        this.id = id;
-        this.name = name;
+        this.id_department = id;
+        this.name_department = name;
     }
 
     public int getId() {
-        return id;
+        return id_department;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_department = id;
     }
 
     public String getName() {
-        return name;
+        return name_department;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name_department = name;
     }
 
     @Override
     public String toString() {
-        return "{"+ id +", "+ name +'}';
+        return "{"+ id_department +", "+ name_department +'}';
     }
 }

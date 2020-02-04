@@ -1,32 +1,32 @@
 package com.tim.appfundacion.Entities;
 
 public class Cargo {
-    private int id;
-    private String name;
+    private int id_cargo;
+    private String nombre_cargo;
 
-    public Cargo(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Cargo(int id_cargo, String name) {
+        this.id_cargo = id_cargo;
+        this.nombre_cargo = name;
     }
 
     public int getId() {
-        return id;
+        return id_cargo;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_cargo = id;
     }
 
     public String getName() {
-        return name;
+        return nombre_cargo;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nombre_cargo = name;
     }
 
     @Override
     public String toString() {
-        return "{" + id + ", " + name +  '}';
+        return "{" + id_cargo + ", " + nombre_cargo +  '}';
     }
 }

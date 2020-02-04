@@ -11,9 +11,7 @@ import com.tim.appfundacion.Entities.DataWork;
 import com.tim.appfundacion.Entities.Department;
 import com.tim.appfundacion.Entities.Employee;
 import com.tim.appfundacion.Entities.Nacionality;
-//import com.tim.appfundacion.Http.HttpClient;
-import com.tim.appfundacion.Http.OnHttpRequestComplete;
-import com.tim.appfundacion.Http.Response;
+import com.tim.appfundacion.QueryEmployee;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,24 +23,55 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-public class EmployeeHttpModel implements OnHttpRequestComplete {
+
+public class EmployeeHttpModel{
     private ArrayList<Employee> empleados = new ArrayList<>();
-    @Override
-    public void onComplete(Response status) {
-        if (status.isSuccess()){
-                query(status);
+    private QueryEmployee queryEmployee;
 
+    public EmployeeHttpModel(QueryEmployee queryEmployee) {
+        this.queryEmployee = queryEmployee;
+    }
+
+    public void generateData(Response response) {
+        if (response.isSuccessful()){
+                query(response);
+            queryEmployee.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    queryEmployee.cargarDatos(empleados);
+                }
+            });
         }
     }
     public ArrayList<Employee> getEmployees(){
 
-        com.tim.appfundacion.Http.HttpClient client  = new com.tim.appfundacion.Http.HttpClient(this);
-        client.excecute("http://192.168.1.9:81/backend_app_samoyed/employee");
+        OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url(UrlHttp.URL_EMPLOYEE)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                System.out.println("Callback");
+                generateData(response);
+            }
+        });
         return empleados;
     }
     public boolean saveEmployee(Employee employee){
@@ -50,7 +79,7 @@ public class EmployeeHttpModel implements OnHttpRequestComplete {
         try {
             // objetos tipo http
             HttpClient client  = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://192.168.1.9:81/backend_app_samoyed/employee/save");
+            HttpPost httpPost = new HttpPost(UrlHttp.URL_EMPLOYEE+"save");
 
             //entidades
             httpPost.setEntity(new UrlEncodedFormEntity(prepareData(employee)));
@@ -62,7 +91,7 @@ public class EmployeeHttpModel implements OnHttpRequestComplete {
             status = dataAux.get("status").getAsString();
             System.out.println("Response: "+status);
         }catch (Exception ex){
-
+            System.out.println(ex);
         }
 
         return status.equals("success")?true:false;
@@ -70,6 +99,8 @@ public class EmployeeHttpModel implements OnHttpRequestComplete {
 
     private List<NameValuePair> prepareData(Employee employee){
         List<NameValuePair> listData =new ArrayList<>();
+        if (employee==null)
+            return listData;
         SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd");
         listData.add(new BasicNameValuePair("name",employee.getName()));
         listData.add(new BasicNameValuePair("last_name",employee.getLast_name()));
@@ -95,7 +126,7 @@ public class EmployeeHttpModel implements OnHttpRequestComplete {
             //JSONArray jsonArr = json.getJSONArray("datos");
             //System.out.println(status.getResult());
             //System.out.println(jsonArr.toString());
-            JsonArray gsonArr = parser.parse(status.getResult()).getAsJsonArray();
+            JsonArray gsonArr = parser.parse(status.body().string()).getAsJsonArray();
 
             for (JsonElement obj : gsonArr) {
                 Employee employee= new Employee();

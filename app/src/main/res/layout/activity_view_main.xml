@@ -104,7 +104,8 @@
                             android:id="@+id/button"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:background="@drawable/empleado" />
+                            android:background="@drawable/empleado"
+                            android:onClick="openFormEmployee" />
 
                         <TextView
                             android:id="@+id/plugins"
@@ -128,7 +129,8 @@
                             android:id="@+id/button2"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:background="@drawable/team" />
+                            android:background="@drawable/team"
+                            android:onClick="openQueryEmployee" />
 
                         <TextView
                             android:id="@+id/myapps"
