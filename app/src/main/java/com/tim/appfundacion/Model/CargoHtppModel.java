@@ -44,9 +44,7 @@ public class CargoHtppModel  {
                 form.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (Cargo cargo:cargos){
-                            form.addCargo(cargo);
-                        }
+                        form.addCargo(cargos);
                     }
                 });
             } catch (JSONException e) {

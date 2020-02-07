@@ -171,7 +171,7 @@ public class EmployeeHttpModel{
                         dataAux.get("name_nacionality").getAsString()
                 );
                 employee.setNacionality(nacionality);
-                //System.out.println(employee.toString());
+                System.out.println(employee.toString());
                 empleados.add(employee);
             }
         } catch (Exception e) {

@@ -44,9 +44,7 @@ public class DepartmentHtppModel {
                 form.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (Department department:departamentos){
-                            form.addDepartment(department);
-                        }
+                        form.addDepartment(departamentos);
                     }
                 });
             } catch (JSONException e) {

@@ -27,6 +27,6 @@ public class Cargo {
 
     @Override
     public String toString() {
-        return "{" + id_cargo + ", " + nombre_cargo +  '}';
+        return nombre_cargo ;
     }
 }

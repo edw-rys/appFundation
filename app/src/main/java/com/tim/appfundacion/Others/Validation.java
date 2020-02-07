@@ -75,7 +75,6 @@ public class Validation {
         catch(Exception e) {
             System.out.println(e.getMessage());
         }
-
         return status;
     }
     public static boolean validateNames(String values){

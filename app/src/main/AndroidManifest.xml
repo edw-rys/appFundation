@@ -11,14 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Details"
-            android:theme="@style/OtherView"></activity>
+        <activity android:name=".Detalle_empleado"
+            android:parentActivityName=".QueryEmployee"
+            android:theme="@style/OtherView"
+            android:label="@string/viewDetail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".QueryEmployee"/>
+        </activity>
+        <activity
+            android:name=".QueryEmployee"
+            android:parentActivityName=".ViewMain"
+            android:theme="@style/OtherView"
+            android:label="@string/viewQueryEmployee"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewMain"/>
+        <activity
+            android:name=".Form"
+            android:theme="@style/OtherView"
+            android:label="@string/viewForm"
+            >
 
-        <activity android:name=".QueryEmployee"
-            android:theme="@style/OtherView"/>
+        </activity>
 
-        <activity android:name=".Form"
-            android:theme="@style/OtherView"/>
         <activity android:name=".ViewMain" />
         <activity
             android:name=".SplashScreen"

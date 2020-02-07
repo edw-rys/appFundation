@@ -41,9 +41,7 @@ public class NacionalityHttp{
                 form.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (Nacionality nac:nacionalidades){
-                            form.addNationality(nac);
-                        }
+                        form.addNationality(nacionalidades);
                     }
                 });
             } catch (JSONException e) {

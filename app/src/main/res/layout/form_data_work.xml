@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Form">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,57 +23,28 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <TableRow
-                android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/inputDni"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/dni"
-                    android:inputType="textPersonName" />
+                    android:layout_margin="10dp"
+                    android:background="@color/letter_three"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/view_form_data_work"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/inputLastName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/last_nameIn"
-                    android:inputType="textPersonName" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/inputName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/nameIn"
-                    android:inputType="textPersonName" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -84,13 +54,13 @@
                         android:layout_weight="1"
                         android:background="@color/letter_three"
                         android:padding="3pt"
-                        android:text="@string/nacionality"
+                        android:text="@string/cargo"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
                     <Spinner
-                        android:id="@+id/spNacionality"
-                        android:layout_width="178dp"
+                        android:id="@+id/spCargo"
+                        android:layout_width="168dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/letter_three" />
                 </LinearLayout>
@@ -100,13 +70,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/inputTelf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/telf"
-                    android:inputType="phone" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="66dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/letter_three"
+                        android:padding="3pt"
+                        android:text="@string/department"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spDepartment"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/letter_three"
+                        android:padding="3pt" />
+                </LinearLayout>
+
             </TableRow>
 
             <TableRow
@@ -116,21 +104,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView37"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/letter_three"
                         android:padding="3pt"
-                        android:text="@string/birthdate"
+                        android:text="@string/date_admision"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txtBirthDateShow"
+                        android:id="@+id/txtDateAdmisionShow"
                         android:layout_width="170dp"
                         android:layout_height="wrap_content"
                         android:hint="@string/format_Date"
@@ -148,42 +137,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView47"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5sp"
-                    android:background="@color/letter_three"
-                    android:text="@string/gender"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="144dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/letter_three"
+                        android:padding="3pt"
+                        android:text="@string/cargo"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spTipo_pago"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/letter_three" />
+                </LinearLayout>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RadioGroup
+                <EditText
+                    android:id="@+id/inputSalary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rdMale"
-                        android:layout_width="148dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/gender_male" />
-
-                    <RadioButton
-                        android:id="@+id/rdFemale"
-                        android:layout_width="144dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/gender_female" />
-                </RadioGroup>
+                    android:ems="10"
+                    android:hint="@string/salary"
+                    android:inputType="numberDecimal" />
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -219,14 +224,14 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/btnCancelV1"
+            android:id="@+id/btnPreviousV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btnCancel" />
+            android:text="@string/btnPrevious" />
 
         <Button
-            android:id="@+id/btnNextV1"
+            android:id="@+id/btnNextV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

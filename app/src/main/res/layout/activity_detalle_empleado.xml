@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Detalle_empleado">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imgDetailIcon"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/names"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailNames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombres"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                tools:text="" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dni"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailDni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DNI"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gender"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/lkl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nacionality"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailNacionality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three"
+                tools:text="Nacionalidad" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cargo"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailCargo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargo"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/hlm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/hlm2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/department"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Departamento"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/birthdate"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailBirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birthdate"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tipo_pago"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailTipoPago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de pago"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/salary"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salario"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_academic"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailTitleAcademic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título Académico"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/level_academic"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailLevelAcademic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nivel académico"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date_admision"
+                android:textAlignment="center"
+                android:textColor="@color/letter_two" />
+
+            <TextView
+                android:id="@+id/textDetailDateAdm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha de admisión"
+                android:textAlignment="center"
+                android:textColor="@color/letter_three" />
+
+            <TextView
+                android:id="@+id/textView277"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView207"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

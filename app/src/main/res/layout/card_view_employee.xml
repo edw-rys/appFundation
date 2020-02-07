@@ -22,7 +22,7 @@
             android:padding="5dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageCard"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/textTitle"
+                android:id="@+id/textName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -43,24 +43,42 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageCard"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.120000005" />
+                app:layout_constraintVertical_bias="0.082" />
 
             <TextView
-                android:id="@+id/textDesc"
+                android:id="@+id/textCi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Sample Card Descriptions"
-                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:text="Sample Card Title"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/textTitle"
-                app:layout_constraintVertical_bias="0.07999998" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageCard"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.505" />
+
+            <TextView
+                android:id="@+id/textCargo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="Sample Card Descriptions"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageCard"
+                app:layout_constraintTop_toBottomOf="@+id/textCi" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

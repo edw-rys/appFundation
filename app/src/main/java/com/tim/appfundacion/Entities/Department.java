@@ -27,6 +27,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return "{"+ id_department +", "+ name_department +'}';
+        return name_department;
     }
 }
