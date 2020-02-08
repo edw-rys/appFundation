@@ -26,5 +26,13 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/message_err_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="err message"
+            android:textColor="@color/error"
+            android:textSize="16sp" />
     </LinearLayout>
 </RelativeLayout>

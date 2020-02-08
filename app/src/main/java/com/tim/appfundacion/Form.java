@@ -214,7 +214,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
             }
 
         }else if (v==btnCancel_v1){
-            startActivity(new Intent(this, ViewMain.class));
+            startMainView();
         }else if (v == btnSig_v2){
             if(validateDataV2()) {
                 setContentView(R.layout.form_data_academic);
@@ -423,12 +423,14 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 android.R.color.transparent
         );
     }
-    public void showProgressError(){
+    public void showProgressError(String message){
         progressDialog = new ProgressDialog(Form.this);
         // show dialog
         progressDialog.show();
         // Set content View
         progressDialog.setContentView(R.layout.dialog_error);
+        TextView txtMssg = (TextView) progressDialog.findViewById(R.id.message_err_save);
+        txtMssg.setText(message);
         // set transparent Background
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent

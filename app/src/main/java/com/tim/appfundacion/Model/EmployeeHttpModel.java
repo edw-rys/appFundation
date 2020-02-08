@@ -121,7 +121,7 @@ public class EmployeeHttpModel{
 
                     JsonObject dataAux =new JsonParser().parse(respuesta).getAsJsonObject();
                     String status = dataAux.get("status").getAsString();
-                    showDialogMessage(status.equals("success"));
+                    showDialogMessage(status.equals("success"), dataAux.get("message").getAsString() );
                 }catch (Exception ex){
                     System.out.println(ex);
                 }
@@ -219,7 +219,7 @@ public class EmployeeHttpModel{
         }
     }
 
-    public void showDialogMessage(boolean status){
+    public void showDialogMessage(boolean status, final String message){
         formEmployee.stopProgressDialog();
         System.out.println(status);
         if (status){
@@ -252,7 +252,7 @@ public class EmployeeHttpModel{
             formEmployee.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    formEmployee.showProgressError();
+                    formEmployee.showProgressError(message);
                     Thread background = new Thread(new Runnable() {
 
                         public void run() {
