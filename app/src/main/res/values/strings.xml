@@ -17,7 +17,7 @@
     <string name="nameIn">Nombre</string>
     <string name="last_nameIn">Apellidos</string>
     <string name="names">Nombre y apellidos</string>
-    <string name="dni">CI:</string>
+    <string name="dni">C.I.:</string>
     <string name="gender">Genero</string>
     <string name="nacionality">Nacionalidad</string>
     <string name="cargo">Cargo</string>
