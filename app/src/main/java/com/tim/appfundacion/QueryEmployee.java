@@ -22,18 +22,6 @@ public class QueryEmployee extends AppCompatActivity {
         setContentView(R.layout.activity_query_employee);
         items = new ArrayList<>();
 
-
-        /*items.add("First CardView Item");
-        items.add("Second CardView Item");
-        items.add("Third CardView Item");
-        items.add("Fourth CardView Item");
-        items.add("Fifth CardView Item");
-        items.add("Sixth CardView Item");
-        items.add("Seven CardView Item");
-        items.add("Eight CardView Item");
-        items.add("Nine CardView Item");
-        items.add("Ten CardView Item");*/
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<Employee> employees= new EmployeeHttpModel(this).getEmployees();
@@ -44,7 +32,7 @@ public class QueryEmployee extends AppCompatActivity {
         for (Employee employee:employees){
             items.add(employee);
         }
-        new EmployeeHttpModel(this).saveEmployee(employees.get(0));
+
         adapter = new Adapter(this,items);
         recyclerView.setAdapter(adapter);
     }

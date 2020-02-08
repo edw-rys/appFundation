@@ -4,8 +4,8 @@
     <string name="viewDetail">Empleado</string>
     <string name="viewForm">Registrar empleado</string>
     <!-- Texto view main-->
-    <string name="name_fundation">Fundation</string>
-    <string name="description">Description</string>
+    <string name="name_fundation">Samoyed Fundation</string>
+    <string name="description">Tnx</string>
     <string name="txt_btn_1">Agregar empleado</string>
     <string name="txt_btn_2">Ver empleados</string>
     <string name="name_organization">Tim Er</string>
@@ -42,5 +42,6 @@
     <string name="btnPrevious">Anterior</string>
     <string name="btnCancel">Cancelar</string>
     <string name="btnSave">Guardar</string>
+    <string name="version">version 1.0.0</string>
 </resources>
 

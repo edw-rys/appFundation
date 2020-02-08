@@ -2,6 +2,8 @@ package com.tim.appfundacion.Model;
 
 
 
+import android.util.Log;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -14,15 +16,17 @@ import com.tim.appfundacion.Entities.Nacionality;
 import com.tim.appfundacion.Form;
 import com.tim.appfundacion.QueryEmployee;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
+//import org.apache.http.HttpEntity;
+//import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.entity.UrlEncodedFormEntity;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+//import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -31,8 +35,11 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -78,51 +85,79 @@ public class EmployeeHttpModel{
         });
         return empleados;
     }
+    private JSONObject prepareJsonData(){
+        JSONObject json =new JSONObject();
+        try {
+            json.put("json","value");
+            json.put("json2","value2");
+        }catch (JSONException ex) {
+
+        }
+        return json;
+    }
     public boolean saveEmployee(Employee employee){
         String status="error";
-        try {
-            // objetos tipo http
-            HttpClient client  = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(UrlHttp.URL_EMPLOYEE+"save");
+        OkHttpClient okHttpClient = new OkHttpClient();
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody formBody = prepareData(employee);
 
-            //entidades
-            httpPost.setEntity(new UrlEncodedFormEntity(prepareData(employee)));
-            HttpResponse response = client.execute(httpPost);
-            HttpEntity entity = response.getEntity();
-            String respuestaTxt = EntityUtils.toString(entity);
-            System.out.println(respuestaTxt);
-            JsonObject dataAux = (JsonObject) new JsonParser().parse(respuestaTxt);
-            System.out.println(dataAux.toString());
-            status = dataAux.get("status").getAsString();
-            System.out.println("Response: "+status);
-        }catch (Exception ex){
-            System.out.println(ex);
-        }
+        Request request = new Request.Builder()
+                .url(UrlHttp.URL_EMPLOYEE+"save")
+                .post(formBody)
+                //.addHeader("Authorization", "header value") //Notice this request has header if you don't need to send a header just erase this part
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try{
+                    String respuesta=response.body().string();
+                    System.out.println(respuesta);
+
+                    JsonObject dataAux =new JsonParser().parse(respuesta).getAsJsonObject();
+                    String status = dataAux.get("status").getAsString();
+                    showDialogMessage(status.equals("success"));
+                }catch (Exception ex){
+                    System.out.println(ex);
+                }
+
+            }
+        });
 
         return status.equals("success")?true:false;
     }
 
-    private List<NameValuePair> prepareData(Employee employee){
-        List<NameValuePair> listData =new ArrayList<>();
+    private RequestBody prepareData(Employee employee){
         if (employee==null)
-            return listData;
+            return new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("json","null")
+                    .build();
         SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd");
-        listData.add(new BasicNameValuePair("name",employee.getName()));
-        listData.add(new BasicNameValuePair("last_name",employee.getLast_name()));
-        listData.add(new BasicNameValuePair("dni",employee.getDNI()));
-        listData.add(new BasicNameValuePair("telf",employee.getTelf()));
-        listData.add(new BasicNameValuePair("birthDate",format.format(employee.getBirthDate())));
-        listData.add(new BasicNameValuePair("gender",employee.getGender()));
-        listData.add(new BasicNameValuePair("id_nacionality",employee.getNacionality().getId_nacionality()+""));
-        listData.add(new BasicNameValuePair("tipo_de_pago",employee.getDataWork().getTipo_de_pago()));
-        listData.add(new BasicNameValuePair("salary",employee.getDataWork().getSalary()+""));
-        listData.add(new BasicNameValuePair("level_academic",employee.getLevel_academic()));
-        listData.add(new BasicNameValuePair("title_academic",employee.getTitle_academic()));
-        listData.add(new BasicNameValuePair("id_cargo",employee.getDataWork().getCargo().getId()+""));
         String dateAdmision = format.format(employee.getDataWork().getDate_of_admission());
-        listData.add(new BasicNameValuePair("date_of_admission",dateAdmision));
-        listData.add(new BasicNameValuePair("id_department",employee.getDataWork().getDepartment().getId()+""));
-        return listData;
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("name",employee.getName())
+                .addFormDataPart("last_name",employee.getLast_name())
+                .addFormDataPart("dni",employee.getDNI())
+                .addFormDataPart("telf",employee.getTelf())
+                .addFormDataPart("birthDate",format.format(employee.getBirthDate()))
+                .addFormDataPart("gender",employee.getGender())
+                .addFormDataPart("id_nacionality",employee.getNacionality().getId_nacionality()+"")
+                .addFormDataPart("tipo_de_pago",employee.getDataWork().getTipo_de_pago())
+                .addFormDataPart("salary",employee.getDataWork().getSalary()+"")
+                .addFormDataPart("level_academic",employee.getLevel_academic())
+                .addFormDataPart("title_academic",employee.getTitle_academic())
+                .addFormDataPart("id_cargo",employee.getDataWork().getCargo().getId()+"")
+                .addFormDataPart("date_of_admission",dateAdmision)
+                .addFormDataPart("id_department",employee.getDataWork().getDepartment().getId()+"")
+
+                .build();
     }
 
     public void query(Response status){
@@ -184,5 +219,57 @@ public class EmployeeHttpModel{
         }
     }
 
-    public void save(Response status){}
+    public void showDialogMessage(boolean status){
+        formEmployee.stopProgressDialog();
+        System.out.println(status);
+        if (status){
+            // empleado guardado
+            /**/
+            formEmployee.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    formEmployee.showProgressSuccess();
+                    Thread background = new Thread(new Runnable() {
+
+                        public void run() {
+
+                            try {
+                                Thread.sleep(2000);
+                                formEmployee.stopProgressDialog();
+                                formEmployee.startMainView();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                    background.start();
+                    }
+            });
+
+        }else{
+            //error al guardar
+            formEmployee.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    formEmployee.showProgressError();
+                    Thread background = new Thread(new Runnable() {
+
+                        public void run() {
+
+                            try {
+                                Thread.sleep(2000);
+                                formEmployee.stopProgressDialog();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                    background.start();
+                }
+            });
+        }
+        System.out.println("fg");
+    }
 }

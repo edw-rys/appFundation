@@ -3,6 +3,7 @@ package com.tim.appfundacion;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Form extends AppCompatActivity implements View.OnClickListener {
+    // progress bar
+    ProgressDialog progressDialog;
+
     private ArrayList<Nacionality> nacionalidades;
     private ArrayList<Cargo> cargos;
     private ArrayList<Department> departamentos;
@@ -200,7 +204,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
             datePickerDialog.show();
         }
         if (v == btnSig_v1){
-            // validacion de datos
+
             if(validateDataV1()){
                 setContentView(R.layout.form_data_work);
                 setDataEmployee(1);
@@ -226,6 +230,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
             if(validateDataV3()) {
                 setDataEmployee(3);
                 // Enviar datos por http
+                startProgressSave();
                 boolean status=new EmployeeHttpModel(this).saveEmployee(empleado);
                 System.out.println("ESTADO DE GUARDADO= "+status);
             }else {
@@ -393,5 +398,49 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 System.out.println(empleado);
                 break;
         }
+    }
+
+    // start progress bar
+    private void startProgressSave(){
+        progressDialog = new ProgressDialog(Form.this);
+        // show dialog
+        progressDialog.show();
+        // Set content View
+        progressDialog.setContentView(R.layout.progress_dialog);
+        // set transparent Background
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+    }
+    public void showProgressSuccess(){
+        progressDialog = new ProgressDialog(Form.this);
+        // show dialog
+        progressDialog.show();
+        // Set content View
+        progressDialog.setContentView(R.layout.dialog_success);
+        // set transparent Background
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+    }
+    public void showProgressError(){
+        progressDialog = new ProgressDialog(Form.this);
+        // show dialog
+        progressDialog.show();
+        // Set content View
+        progressDialog.setContentView(R.layout.dialog_error);
+        // set transparent Background
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+    }
+    public void stopProgressDialog(){
+        System.out.println("stop");
+        progressDialog.dismiss();
+    }
+
+    public void startMainView() {
+        startActivity(new Intent(this, ViewMain.class));
+        finish();
     }
 }
