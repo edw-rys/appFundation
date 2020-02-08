@@ -14,7 +14,7 @@ public class Validation {
             status=true;
         } catch(NumberFormatException ex)
         {
-            System.out.println(ex.toString());
+            //System.out.println(ex.toString());
             status=false;
         }
         return status;
@@ -35,7 +35,7 @@ public class Validation {
             status=true;
         } catch(NumberFormatException ex)
         {
-            System.out.println(ex.toString());
+            //System.out.println(ex.toString());
             status=false;
         }
         return status;
@@ -73,7 +73,8 @@ public class Validation {
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            status =false;
+            //System.out.println(e.getMessage());
         }
         return status;
     }
@@ -83,7 +84,7 @@ public class Validation {
         return status.find();
     }
     //metodo para validar si la fecha es correcta
-    public boolean isDate(String fechax) {
+    public static boolean isDate(String fechax) {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha = formatoFecha.parse(fechax);

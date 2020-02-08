@@ -5,39 +5,59 @@ import android.text.Editable;
 import java.util.ArrayList;
 
 public class ValidateFormEmployee {
-    public static ArrayList<String> dataInfo=new ArrayList<>();
+    public static ArrayList<DataError> dataInfo=new ArrayList<>();
     public static boolean validateDataAcademic(Object lvlAcademic, String title) {
         dataInfo=new ArrayList<>();
         boolean status = true;
         if (lvlAcademic.equals("")){
-            dataInfo.add("Nivel no seleccionado");
+            dataInfo.add(
+                    new DataError(DataError.levelAcademic,"Nivel no seleccionado",true)
+            );
             status = false;
         }
+
         if (title.equals("") || !Validation.isText(title)){
-            dataInfo.add("Digite el nombre del título");
+            dataInfo.add(
+                    new DataError(DataError.titleAcademic,"Nombre no es válido",true)
+            );
             status = false;
         }
         System.out.println(dataInfo.toString());
         return status;
     }
 
-    public static boolean validateDataWork(String dateAdmision, Object department, Object cargo, String salary) {
+    public static boolean validateDataWork(String dateAdmision, Object department, Object cargo, String salary,Object tiposPago) {
         dataInfo=new ArrayList<>();
         boolean status = true;
-        if (dateAdmision.equals("dd/mm/yyy")){
-            dataInfo.add("Error de fecha");
+        if (!Validation.isDate(dateAdmision)){
+            dataInfo.add(
+                    new DataError(DataError.dateAdmision,"Fecha no es válida",true)
+            );
             status = false;
         }
         if (cargo.equals("")){
-            dataInfo.add("cargo no seleccionado");
+            dataInfo.add(
+                    new DataError(DataError.cargo,"cargo no seleccionado",true)
+            );
             status = false;
         }
         if (department.equals("")){
-            dataInfo.add("Departamento no seleccionado");
+            dataInfo.add(
+                new DataError(DataError.department,"Departamento no seleccionado",true)
+            );
             status = false;
         }
         if (!Validation.isDecimal(salary)){
-            dataInfo.add("Valor de salario mal ingresado");
+            dataInfo.add(
+                new DataError(DataError.salary,"Valor no es válido",true)
+            );
+            status = false;
+        }
+        System.out.println(tiposPago);
+        if (tiposPago.equals("")){
+            dataInfo.add(
+                    new DataError(DataError.tipoPago,"Seleccione tipo de pago",true)
+            );
             status = false;
         }
         System.out.println(dataInfo.toString());
@@ -47,31 +67,45 @@ public class ValidateFormEmployee {
         boolean status = true;
         dataInfo=new ArrayList<>();
         if (nacionality==null || nacionality.equals("")){
-            dataInfo.add("Nacionalidad no seleccionada");
+            dataInfo.add(
+                new DataError(DataError.nacionality,"Nacionalidad no seleccionada",true)
+            );
             status = false;
         }
-        if (birthdate.equals("dd/mm/yyy")){
-            dataInfo.add("Error de fecha");
+        if (!Validation.isDate(birthdate)){
+            dataInfo.add(
+                new DataError(DataError.birthdate,"Fecha no es válida",true)
+            );
             status = false;
         }
         if (!Validation.isDNIEC(dni)){
-            dataInfo.add("Ci no permitida");
+            dataInfo.add(
+                new DataError(DataError.dni,"Cédula no es válida",true)
+            );
             status = false;
         }
         if (!Validation.validateNames(lastName)){
-            dataInfo.add("Apellidos no permitidos");
+            dataInfo.add(
+                new DataError(DataError.lastName,"Apellidos no permitidos",true)
+            );
             status = false;
         }
         if (!Validation.validateNames(name)){
-            dataInfo.add("Nombres no permitidos");
+            dataInfo.add(
+                new DataError(DataError.name,"Nombres no permitidos",true)
+            );
             status = false;
         }
         if(!Validation.isPhoneNumber(telf)){
-            dataInfo.add("Número de teléfono no permitido");
+            dataInfo.add(
+                new DataError(DataError.telf,"Número de teléfono no permitido",true)
+            );
             status = false;
         }
         if (!(isMale || isFemale)){
-            dataInfo.add("Seleccione su género");
+            dataInfo.add(
+                new DataError(DataError.gender,"Seleccione su género",true)
+            );
             status = false;
         }
         System.out.println(dataInfo.toString());

@@ -11,6 +11,7 @@ import com.tim.appfundacion.Entities.DataWork;
 import com.tim.appfundacion.Entities.Department;
 import com.tim.appfundacion.Entities.Employee;
 import com.tim.appfundacion.Entities.Nacionality;
+import com.tim.appfundacion.Form;
 import com.tim.appfundacion.QueryEmployee;
 
 import org.apache.http.HttpEntity;
@@ -38,9 +39,12 @@ import okhttp3.Response;
 public class EmployeeHttpModel{
     private ArrayList<Employee> empleados = new ArrayList<>();
     private QueryEmployee queryEmployee;
-
+    private Form formEmployee;
     public EmployeeHttpModel(QueryEmployee queryEmployee) {
         this.queryEmployee = queryEmployee;
+    }
+    public EmployeeHttpModel(Form formEmployee) {
+        this.formEmployee = formEmployee;
     }
 
     public void generateData(Response response) {
@@ -86,8 +90,9 @@ public class EmployeeHttpModel{
             HttpResponse response = client.execute(httpPost);
             HttpEntity entity = response.getEntity();
             String respuestaTxt = EntityUtils.toString(entity);
-
+            System.out.println(respuestaTxt);
             JsonObject dataAux = (JsonObject) new JsonParser().parse(respuestaTxt);
+            System.out.println(dataAux.toString());
             status = dataAux.get("status").getAsString();
             System.out.println("Response: "+status);
         }catch (Exception ex){

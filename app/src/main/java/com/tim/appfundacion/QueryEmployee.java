@@ -44,6 +44,7 @@ public class QueryEmployee extends AppCompatActivity {
         for (Employee employee:employees){
             items.add(employee);
         }
+        new EmployeeHttpModel(this).saveEmployee(employees.get(0));
         adapter = new Adapter(this,items);
         recyclerView.setAdapter(adapter);
     }
