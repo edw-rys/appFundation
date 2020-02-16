@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -365,11 +366,10 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 empleado.setName(inputName.getText().toString());
                 empleado.setLast_name(inputLastName.getText().toString());
                 String [] datosFech = txtBirthDateShow.getText().toString().split("/");
-                Date birthDate = new Date(
-                        Integer.parseInt(datosFech[2]),
-                        Integer.parseInt(datosFech[1]),
-                        Integer.parseInt(datosFech[0])
-                );
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Integer.parseInt(datosFech[2]) ,Integer.parseInt(datosFech[1]) ,Integer.parseInt(datosFech[0]));
+                Date birthDate = calendar.getTime();
+                Log.d("date",birthDate.toString());
                 empleado.setBirthDate(birthDate);
                 empleado.setGender(
                         rdMale.isChecked()?"masculino":"femenino"
@@ -378,12 +378,12 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
             case 2:
                 // guardar datos del trabajo
                 DataWork dataWork=new DataWork();
+                Calendar calendar_Adm = Calendar.getInstance();
+
                 String [] datosFechAdm = txtBirthDateShow.getText().toString().split("/");
-                Date adm = new Date(
-                        Integer.parseInt(datosFechAdm[2]),
-                        Integer.parseInt(datosFechAdm[1]),
-                        Integer.parseInt(datosFechAdm[0])
-                );
+                calendar_Adm.set(Integer.parseInt(datosFechAdm[2]) ,Integer.parseInt(datosFechAdm[1]) ,Integer.parseInt(datosFechAdm[0]));
+                Date adm = calendar_Adm.getTime();
+
                 dataWork.setDate_of_admission(adm);
                 dataWork.setTipo_de_pago(spTipoPago.getSelectedItem().toString());
                 dataWork.setDepartment((Department) spDepartment.getSelectedItem());

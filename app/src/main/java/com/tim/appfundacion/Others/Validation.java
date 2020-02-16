@@ -1,6 +1,7 @@
 package com.tim.appfundacion.Others;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,7 +80,7 @@ public class Validation {
         return status;
     }
     public static boolean validateNames(String values){
-        Pattern patron = Pattern.compile("^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$");
+        Pattern patron = Pattern.compile("^(?=.{5,20}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$");
         Matcher status = patron.matcher(values);
         return status.find();
     }
@@ -88,6 +89,8 @@ public class Validation {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha = formatoFecha.parse(fechax);
+
+
         } catch (Exception e) {
             return false;
         }

@@ -1,8 +1,11 @@
 package com.tim.appfundacion.Others;
 
 import android.text.Editable;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ValidateFormEmployee {
     public static ArrayList<DataError> dataInfo=new ArrayList<>();
@@ -77,6 +80,16 @@ public class ValidateFormEmployee {
                 new DataError(DataError.birthdate,"Fecha no es válida",true)
             );
             status = false;
+        }else{
+            Calendar calendar =Calendar.getInstance();
+            String [] datosFechAdm = birthdate.split("/");
+            Date date = new Date();
+
+            if((date.getYear()+1900)-Integer.parseInt(datosFechAdm[2])<18){
+                dataInfo.add(
+                        new DataError(DataError.birthdate,"No se permite registrar a un menor de edad.",true)
+                );
+            }
         }
         if (!Validation.isDNIEC(dni)){
             dataInfo.add(

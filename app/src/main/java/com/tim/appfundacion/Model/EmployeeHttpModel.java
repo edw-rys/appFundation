@@ -16,17 +16,8 @@ import com.tim.appfundacion.Entities.Nacionality;
 import com.tim.appfundacion.Form;
 import com.tim.appfundacion.QueryEmployee;
 
-//import org.apache.http.HttpEntity;
-//import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-//import org.apache.http.client.HttpClient;
-//import org.apache.http.client.entity.UrlEncodedFormEntity;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-//import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -67,6 +58,14 @@ public class EmployeeHttpModel{
     }
     public ArrayList<Employee> getEmployees(){
 
+        // obteniendo datos
+        queryEmployee.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                queryEmployee.startProgressSave();
+            }
+        });
+        // peticiones http
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
                 .url(UrlHttp.URL_EMPLOYEE)
@@ -74,12 +73,26 @@ public class EmployeeHttpModel{
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+                queryEmployee.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // detener barra de carga
+                        queryEmployee.stopProgressDialog();
+                        // mostrar mensaje de error
+                        queryEmployee.showProgressError("Error de conexión","");
+                    }
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                System.out.println("Callback");
+                // detener barra de carga
+                queryEmployee.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        queryEmployee.stopProgressDialog();
+                    }
+                });
                 generateData(response);
             }
         });

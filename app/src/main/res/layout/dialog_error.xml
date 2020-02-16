@@ -14,18 +14,19 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgErr_not"
             android:layout_width="111dp"
             android:layout_height="104dp"
             app:srcCompat="@drawable/error" />
 
         <TextView
+            android:id="@+id/title_err_mssg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Error al guardar"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/message_err_save"
