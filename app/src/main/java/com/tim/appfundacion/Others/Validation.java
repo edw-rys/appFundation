@@ -80,7 +80,7 @@ public class Validation {
         return status;
     }
     public static boolean validateNames(String values){
-        Pattern patron = Pattern.compile("^(?=.{5,20}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$");
+        Pattern patron = Pattern.compile("^(?=.{4,20}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$");
         Matcher status = patron.matcher(values);
         return status.find();
     }

@@ -89,6 +89,7 @@ public class ValidateFormEmployee {
                 dataInfo.add(
                         new DataError(DataError.birthdate,"No se permite registrar a un menor de edad.",true)
                 );
+                status = false;
             }
         }
         if (!Validation.isDNIEC(dni)){

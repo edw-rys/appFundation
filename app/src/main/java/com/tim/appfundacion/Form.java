@@ -380,9 +380,11 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 DataWork dataWork=new DataWork();
                 Calendar calendar_Adm = Calendar.getInstance();
 
-                String [] datosFechAdm = txtBirthDateShow.getText().toString().split("/");
-                calendar_Adm.set(Integer.parseInt(datosFechAdm[2]) ,Integer.parseInt(datosFechAdm[1]) ,Integer.parseInt(datosFechAdm[0]));
-                Date adm = calendar_Adm.getTime();
+                String [] datosFechAdm = txtDateAdmisionShow.getText().toString().split("/");
+                Date adm = new Date();
+                adm.setDate(Integer.parseInt(datosFechAdm[0]));
+                adm.setMonth(Integer.parseInt(datosFechAdm[1]));
+                adm.setYear(Integer.parseInt(datosFechAdm[2])-1900);
 
                 dataWork.setDate_of_admission(adm);
                 dataWork.setTipo_de_pago(spTipoPago.getSelectedItem().toString());
